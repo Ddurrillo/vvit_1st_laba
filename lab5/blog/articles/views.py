@@ -17,7 +17,10 @@ def create_post(request):
     if not request.user.is_anonymous:
         if request.method == "POST":
             form = {'text': request.POST["text"], 'title': request.POST["title"]}
-            if form["text"] and form["title"] and form["title"] not in [article.title for article in Article.objects.all()]:
+            if form["text"] and form["title"]:
+                if form["title"] in [article.title for article in Article.objects.all()]:
+                    form['errors'] = u"Название статьтьи неуникально"
+                    return render(request, 'create_post.html', {'form': form})
                 article = Article.objects.create(text=form["text"], title=form["title"], author=request.user)
                 return redirect('get_article', article_id=article.id)
             else:
