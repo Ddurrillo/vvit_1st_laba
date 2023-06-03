@@ -23,6 +23,7 @@ urlpatterns = [
     path('authorize/', views.authorize),
     path('deauthorize/', views.deauthorize),
     path('', views.archive),
-    path('article/new', views.create_post),
+    path('archive/', views.archive),
+    path('article/new/', views.create_post),
     re_path(r'^article/(?P<article_id>\d+)$', views.get_article, name='get_article'),
 ]

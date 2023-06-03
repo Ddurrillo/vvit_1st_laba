@@ -21,8 +21,8 @@
         <div class="archive">
             {% for post in posts %}
                 <div class="one-post">
+                    <a class = "folding-button"></a>
                     <h2 class="post-title"><a href="{{ BASE_DIR }}/article/{{ post.id }}">{{post.title}}</a></h2>
-                    <button class="fold-button">Свернуть</button>
                     <div class="article-info">
                         <div class="article-author">{{post.author.username}}</div>
                         <div class="article-created-date">{{post.created_date}}</div>
@@ -31,6 +31,7 @@
                 </div>
             {% endfor %}
         </div>
-        <script src="{{STATIC_URL}}/static/js/helloworld.js"></script>
+        <!-- <script src="{{STATIC_URL}}/static/js/helloworld.js"></script> -->
+        <script src="{{STATIC_URL}}/static/js/fold-post.js"></script>
     </body>
 </html>

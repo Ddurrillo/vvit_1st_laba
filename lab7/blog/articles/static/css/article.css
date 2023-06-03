@@ -18,6 +18,7 @@ body {
 
 .header h3 {
     text-decoration-line: underline;
+    margin-right: 10px;
 }
 
 .archive {
@@ -26,7 +27,7 @@ body {
     margin-right: auto;
 }
 
-.post-title a {
+a {
     color: #ffffff;
 }
 
@@ -37,4 +38,17 @@ body {
 
 .article-created-date {
     text-align: right;
+}
+
+.folding-button::after {
+    float: right;
+    content: "свернуть";
+}
+
+.folded .folding-button::after {
+    content: "развернуть";
+}
+
+.folded .article-text {
+    display: none;
 }

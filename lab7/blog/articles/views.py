@@ -38,14 +38,17 @@ def register(request):
         return redirect("/archive/")
     else:
         if request.method == "POST":
-            login, mail, password = request.POST["login"], request.POST['email'], request.POST["password"]
+            login, mail = request.POST["login"], request.POST['email']
+            password, password_repeated =  request.POST["password"], request.POST["password-repeat"]
+            if password != password_repeated:
+                return render(request, 'registration.html', {'err': "Пароли не совпадают"})
             if login and mail and password:
                 try:
                     User.objects.get(username=login)
                     return render(request, 'registration.html', {'err': "Такой пользователь уже существует"})
                 except User.DoesNotExist:
                     User.objects.create_user(login, mail, password)
-                    return redirect("/auth/")
+                    return redirect("/archive/")
             else:
                 return render(request, 'registration.html', {'err': "Есть пустые поля."})
         else:

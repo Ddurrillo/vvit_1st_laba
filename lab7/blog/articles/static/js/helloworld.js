@@ -31,7 +31,7 @@ var groupmates = [
     }
 ];
 
-var rpad = function (str, length) {
+var rpad = function(str, length) {
     // js не поддерживает добавление нужного количества символов
     // справа от строки, т.е. аналога ljust из Python здесь нет 
     str = str.toString(); // преобразование в строку
@@ -40,7 +40,7 @@ var rpad = function (str, length) {
     return str;
     };
     
-var printStudents = function (students) { 
+var printStudents = function(students) { 
     console.log(
         rpad("Имя", 15),
         rpad("Фамилия", 15),
@@ -48,7 +48,7 @@ var printStudents = function (students) {
         rpad("Оценки", 20)
     );
     // был выведен заголовок таблицы
-    for (var i = 0; i <= students.length - 1; i++) {
+    for (var i = 0; i<=students.length-1; i++){
     // в цикле выводится каждый экземпляр студента 
         console.log(
             rpad(students[i]['name'], 15),
@@ -58,12 +58,12 @@ var printStudents = function (students) {
         );
     }
     console.log('\n'); // добавляется пустая строка в конце вывода
-};
+    };
 
 var filterByGroup = function (students, group) {
     var mas = [];
     for (var i = 0; i <= students.length - 1; i++) {
-        if (students[i]['group'] == group) {
+        if (students[i]["group"] == group) {
             mas.push(students[i]);
         }
     }
@@ -72,8 +72,10 @@ var filterByGroup = function (students, group) {
 
 var filterByMiddleMark = function (students, middleMark) {
     var mas = [];
+    var mark = 0;
     for (var i = 0; i <= students.length - 1; i++) {
-        if ((students[i]['marks'].reduce((a, b) => a + b, 0) / 3) >= middleMark) {
+        mark = students[i]['marks'][0] + students[i]['marks'][1] + students[i]['marks'][2];
+        if ((mark / 3) >= middleMark) {
             mas.push(students[i])
         }
     }
@@ -82,5 +84,5 @@ var filterByMiddleMark = function (students, middleMark) {
 
 var group = prompt("Введите номер нужной группы.");
 printStudents(filterByGroup(groupmates, group));
-var mark = prompt("Введите минимальный средний балл.");
+var mark = Number(prompt("Введите минимальный средний балл."));
 printStudents(filterByMiddleMark(groupmates, mark));
